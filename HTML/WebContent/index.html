@@ -3,31 +3,32 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Assignment #1 - HTML</title>
-<link href="styles.css" type="text/css" rel="stylesheet" />
-<script src="form.js"></script>
+<link href="css/styles.css" type="text/css" rel="stylesheet" />
+<script src="js/form.js"></script>
 </head>
 <body>	
   <div id="wrap">
     <!-- Header -->
     <div id="header">
       <h1>Github + Eclipse</h1>       	           	
-    </div>  
-    
+    </div>
+	
     <!-- Main -->
     <div id="main">      
       <div class="topbox">
         <p>How to setup Eclipse for use with Github.</p>    	
       </div>
+     
       
       <!--  Installing EGit -->
       <div class="round"><p class="step">1</p></div>
       <div class="section-title"><h2>Installing EGit</h2></div>  				 		
       <div class="box">   		
     	<p>To install EGit, open Eclipse and navigate to the Eclipse Marketplace. The Eclipse Marketplace can be found by navigating to Help &gt; Eclipse Marketplace. You should be presented with a dialogue similar to the one below (You should have an Install button versus the Update button seen below). Search for <span class="italics">EGit</span> and click install. Follow the onscreen dialogues using the defaults, you may need to accept the license agreement to proceed.</p>
-    	<div class="imgborder"><img src="images/1_marketplace.jpg" /></div>
+    	<div class="imgborder"><img src="img/1_marketplace.jpg" /></div>
     	<p>Restart Eclipse after installation.</p>
     	<p>Following the restart, validate the EGit was successfully installed by switching to the <span class="italics">Git Repository Exploring</span>. Navigate to Window &gt; Open Perspective &gt; Other. Validate that you have the perspective listed below.</p>
-    	<div class="imgborder"><img src="images/1_perspectives.jpg" /></div>
+    	<div class="imgborder"><img src="img/1_perspectives.jpg" /></div>
     	<p>EGit has been successfully installed. Proceed to the next step.
       </div>
       
@@ -35,7 +36,7 @@
       <div class="round"><p class="step">2</p></div><div class="section-title"><h2>Setup Github Account and Repo</h2></div>  				 		
       <div class="box">  
         <p>Follow the instructions in the attached document to setup a Github account and repo. Once the repo is created, copy the HTTPS GIT URL to your clipboard for use in the next step.</p>
-        <div class="dlbox"><a href="images/GitHub_Installation.pdf" target="_new">Download: GitHub_Installation.pdf</a></div>
+        <div class="dlbox"><a href="img/GitHub_Installation.pdf" target="_new">Download: GitHub_Installation.pdf</a></div>
     	<p>Proceed to the next step after creating the repo.</p>			
       </div>
       
@@ -43,13 +44,13 @@
       <div class="round"><p class="step">3</p></div><div class="section-title"><h2>Clone the New Repo</h2></div>  				 		
       <div class="box">  
         <p>Back in Eclipse, switch to the <span class="italics">Git Repository Exploring</span> (Window &gt; Open Perspective &gt; Other). Near the top of the window select Clone Repo.</p>
-        <div class="imgborder"><img src="images/03_clonebtn.jpg" /></div>
+        <div class="imgborder"><img src="img/03_clonebtn.jpg" /></div>
         <p>Enter the URL captured from the previous step (Github Repo HTTPS URL) and your credentials. Hit next.</p>
-        <div class="imgborder"><img src="images/3_clonedia.jpg" /></div>
+        <div class="imgborder"><img src="img/3_clonedia.jpg" /></div>
         <p>Verify the master branch is selected and hit next.</p>
-        <div class="imgborder"><img src="images/3_clonebranch.jpg" /></div>
+        <div class="imgborder"><img src="img/3_clonebranch.jpg" /></div>
         <p>Select the local location where the Git repo will be stored. This is your working directory for local/offline commits. Click Finish.
-        <div class="imgborder"><img src="images/3_localdest.jpg" /></div>
+        <div class="imgborder"><img src="img/3_localdest.jpg" /></div>
     	<p>You should now see the new repo listed under Git Repositories. Proceed to the next step.</p>			
       </div>
       
@@ -57,13 +58,13 @@
       <div class="round"><p class="step">4</p></div><div class="section-title"><h2>Adding Projects to a Git Repo</h2></div>  				 		
       <div class="box">  
         <p>Create an Eclipse project as you normally would (File &gt; New &gt; Static Web Project for example). You should now see the project listed in Project Explorer. Add some content to the project under the appropriate folder (WebContent in the case of a Static Web Project). Right click on the project and navigate to Team &gt; Share Project as seen below.</p>
-        <div class="imgborder"><img src="images/04_shareproject.png" /></div>
+        <div class="imgborder"><img src="img/04_shareproject.png" /></div>
         <p>On the dialogue that follows select Git.</p>
-        <div class="imgborder"><img src="images/4_sharegit.jpg" /></div>
+        <div class="imgborder"><img src="img/4_sharegit.jpg" /></div>
         <p>On the next dialogue select the local repo you created in Step 3. Your selection should look similar to below. Click Finish.</p>
-        <div class="imgborder"><img src="images/04_configgit.jpg" /></div>
+        <div class="imgborder"><img src="img/04_configgit.jpg" /></div>
         <p>In Project Explorer, your project should now have a tag following indicating it is under Git control, you should also notice quite a few new options under the Team menu.</p>
-        <div class="imgborder"><img src="images/04_final.jpg" /></div>
+        <div class="imgborder"><img src="img/04_final.jpg" /></div>
     	<p>You are now setup to use Git with Eclipse! The next step will take you through your first commit and push to upstream.</p>			
       </div>
       
@@ -71,11 +72,11 @@
       <div class="round"><p class="step">5</p></div><div class="section-title"><h2>Committing Changes</h2></div>  				 		
       <div class="box">  
         <p>You are now ready to make updates and commit those changes to Github. You will make code changes, add files, etc. as you normally would. Once code is tested and is ready to be checked in, right click on the project and navigate to Team &gt; </p>
-        <div class="imgborder"><img src="images/05_commitmenu.jpg" /></div>
+        <div class="imgborder"><img src="img/05_commitmenu.jpg" /></div>
         <p>Enter a commit comment in the large box at the top. Use the highlighted select all (or select the files you want to commit) and click on commit.</p>
-        <div class="imgborder"><img src="images/05_commitdia.jpg" /></div>
+        <div class="imgborder"><img src="img/05_commitdia.jpg" /></div>
         <p>The new code has now been committed to your local git repo. When ready to push changes to Github, right click on the project and navigate to Team &gt; Push to Upstream.</p>
-        <div class="imgborder"><img src="images/05_pushmenu.jpg" /></div>
+        <div class="imgborder"><img src="img/05_pushmenu.jpg" /></div>
     	<p>You have successfully committed code changes to Github!</p>			
       </div>
     

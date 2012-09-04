@@ -1,39 +1,17 @@
-html {
-	border-top: 40px #8c9a9a solid;
-	padding: 0px;
-	margin: 0;
-}
-
-#wrap { 
-	width: 960px; 
-	margin: -50px auto 0 auto; 
-	text-align: center; 
-}
-
 body { 
 	background-color: #B4CDCD; 
-	color: #000; 
-	line-height: 22px; 
-	font-family: Arial;
-	font-size: 12px; 
-	text-align: center;
-}
-	
-a:link, a:visited { 
-	color: #8c9a9a; 
-	text-decoration: none; 
-}
-	
-a:hover, a:active {
-	color: #555555; 
+	color: #000;
 }
 
-#header { 
-	padding: 70px 0 40px 0; 
-	overflow: hidden; 
+.center {
+	text-align: center;
+}
+
+header {
+	margin: 60px 0;
 }
 	
-#header h1 { 
+header h1 { 
 	font-size: 64px; 
 	color: #444; 
 	letter-spacing: -3px; 
@@ -43,41 +21,32 @@ a:hover, a:active {
 	text-shadow: 2px 2px 1px #ccc;
     filter: dropshadow(color=#ccc, offx=2, offy=2);
 }
-	
-#main { 
-	clear: both; 
-	margin: 0 75px;
-	width: 810px; 
-}
-	
-.box, .topbox { 
-	background-color: #ffeee0; 
-	border: 2px #e5e5e5 solid; 
-	padding: 30px;  
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-}
 
-.box {
-	margin-top: 20px;
-	text-align: left;
-	-webkit-box-shadow:  1px 1px 1px 1px #666;
-    box-shadow:  1px 1px 1px 1px #666;
-    font-size: 14px;
+.topbox, .box {
+	width: 60%;
+	margin: 50px auto;
+	background-color: #ffffee;
+	padding: 30px;
 }
 
 .topbox {
-	width: 90%;
 	text-align: center;
-	margin: 10px auto;
-	-webkit-box-shadow:  1px 1px 1px 1px #666;
-    box-shadow:  1px 1px 1px 1px #666;
-    font-size: 18px;
+    font-size: 18px; 
 }
 
-.box, .topbox p {  
-	margin: 0; 
-	line-height: 26px;
+.box {
+	text-align: left;
+    font-size: 14px;
+}
+
+.imgborder { 
+	margin: 50px auto;
+	text-align: center;
+}
+	
+.imgborder img {
+	-webkit-box-shadow:  1px 1px 1px 1px #666;
+    box-shadow:  1px 1px 1px 1px #666;
 }
 
 .round {
@@ -88,7 +57,6 @@ a:hover, a:active {
 	-moz-border-radius: 25px;
 	border-radius: 25px;
 	background-color:#8c9a9a;
-	margin: 0 0 -20px -70px;
 	-webkit-box-shadow:  1px 1px 1px 1px #666;
     box-shadow:  1px 1px 1px 1px #666;
 }
@@ -105,7 +73,6 @@ a:hover, a:active {
 .section-title { 
 	display: inline-block;
 	width: 90%;
-	margin: 60px 0 -15px 5px;
 	text-align: left;
 	text-shadow: 1px 1px 1px #666;
     filter: dropshadow(color=#666, offx=1, offy=1);
@@ -115,36 +82,27 @@ a:hover, a:active {
 	color: #000; 
 	font-size: 24px;
 }
-    
-.imgborder { 
-	margin: 50px auto;
-	text-align: center;
-}
-	
-.imgborder img {
-	-webkit-box-shadow:  1px 1px 1px 1px #666;
-    box-shadow:  1px 1px 1px 1px #666;
+
+
+.pad20tb {
+	padding: 20px 0;
 }
 
-.dlbox {
-	background: url("images/dlbg.png");
-	width: 60%;
-	margin: 25px auto;
-	padding: 15px;
-	text-align: center;
-	text-decoration: none;
-	border: 1px #FFEC8B solid;
-	-webkit-box-shadow:  1px 1px 1px 1px #666;
-    box-shadow:  1px 1px 1px 1px #666;
-    font-family: "myriad-pro-1","myriad-pro-2","Lucida Grande",Sans-Serif;
-    font-size: 18px;
-    font-weight: 600;
-    -moz-border-radius: 8px;
-	border-radius: 8px;
+.right {
+	text-align: right;
 }
 
-.dlbox a {
-	display: block;
+footer { 
+	clear: both; 
+	border-top: 3px #eee dashed; 
+	margin: 40px 0 40px 0; 
+	color: #666; 
+	text-align: center; 
+}
+
+footer p { 
+	font-size: 18px; 
+	margin: 10px 0 0 0; 
 }
 
 #formwrap {
@@ -152,22 +110,6 @@ a:hover, a:active {
 	margin: 0px auto;
 	font-weight: bold;
 	font-size: 12pt;
-}
-
-#formleft {
-	width: 50%;
-	float: left;
-	text-align: left;
-	padding: 15px 0;
-	display: inline-block;
-}
-
-#formright {
-	width: 50%;
-	float: left;
-	text-align: right;
-	padding: 15px 0;
-	display: inline-block;
 }
 
 fieldset { 
@@ -182,6 +124,7 @@ legend {
     padding: 0.2em 0.5em;
     font-family: "myriad-pro-1","myriad-pro-2","Lucida Grande",Sans-Serif;
     font-size: 16px;
+    border-bottom: 0px;
 }
 
 input, textarea {
@@ -220,30 +163,7 @@ input, textarea {
 
 #error {
 	width: 60%;
-	margin: 15px auto;
-	color: #fff;
-	background-color: #C73F17;
-	clear: both;
-	text-align: center;
-	border: 2px #666 solid;
-	-webkit-box-shadow:  1px 1px 1px 1px #666;
-    box-shadow:  1px 1px 1px 1px #666;
-    -moz-border-radius: 8px;
-	border-radius: 8px;
-	display: block;
-	text-decoration: none;
 	display: none;
-}
-
-#footer { 
-	clear: both; 
-	border-top: 3px #eee dashed; 
-	margin: 40px 0 40px 0; 
-	color: #666; 
-	text-align: center; 
-}
-
-#footer p { 
-	font-size: 18px; 
-	margin: 10px 0 0 0; 
+	margin: 0 auto;
+	text-align: center;
 }

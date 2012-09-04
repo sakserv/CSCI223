@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <title>Assignment 02 - Shane Kumpf - CSCI 223</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/nav.css" rel="stylesheet" />
+    <link href="css/rounded.css" rel="stylesheet" />
+  </head>
+  <body>
+      <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar-inner">
+          <div class="container">
+        
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+          
+            <a class="brand" href="#top">Github + Eclipse</a>
+          
+            <div class="nav-collapse">
+              <ul class="nav">
+                <li><a href="#step1">Step 1</a></li>
+                <li><a href="#step2">Step 2</a></li>
+                <li><a href="#step3">Step 3</a></li>
+                <li><a href="#step4">Step 4</a></li>
+                <li><a href="#step5">Step 5</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+          
+          </div>
+        </div>
+      </nav>
+      
+    <header class="container center">
+      <h1>Github + Eclipse</h1>
+    </header>
+    
+    <div class="topbox rounded">How to setup Eclipse for use with Github.</div>
+    
+    <!--  Installing EGit -->
+    <a id="step1"></a>
+    <section class="box rounded">
+      <div class="round"><p class="step">1</p></div>
+      <div class="section-title"><h2>Installing EGit</h2></div>
+      <article>
+        <p>To install EGit, open Eclipse and navigate to the Eclipse Marketplace. The Eclipse Marketplace can be found by navigating to Help &gt; Eclipse Marketplace. You should be presented with a dialogue similar to the one below (You should have an Install button versus the Update button seen below). Search for <span class="italics">EGit</span> and click install. Follow the onscreen dialogues using the defaults, you may need to accept the license agreement to proceed.</p>
+        <div class="imgborder"><a href="img/1_marketplace.jpg" target="_new"><img src="img/1_marketplace.jpg" /></a></div>
+        <p>Restart Eclipse after installation.</p>
+    	<p>Following the restart, validate the EGit was successfully installed by switching to the <span class="italics">Git Repository Exploring</span>. Navigate to Window &gt; Open Perspective &gt; Other. Validate that you have the perspective listed below.</p>
+    	<div class="imgborder"><a href="img/1_perspectives.jpg" target="_new"><img src="img/1_perspectives.jpg" /></a></div>
+    	<p>EGit has been successfully installed. Proceed to the next step.
+      </article>
+    </section>
+    
+    <!--  Setup Github Account and Repo -->
+    <a id="step2"></a>
+    <section class="box rounded">
+      <div class="round"><p class="step">2</p></div>
+      <div class="section-title"><h2>Setup Github Account and Repo</h2></div>
+      <article>  				 		  
+        <p>Follow the instructions in the attached document to setup a Github account and repo. Once the repo is created, copy the HTTPS GIT URL to your clipboard for use in the next step.</p>
+        <div class="btn-group center pad20tb"><a href="img/GitHub_Installation.pdf" target="_new" class="btn btn-inverse">GitHub_Installation.pdf</a></div>
+    	<p>Proceed to the next step after creating the repo.</p>
+      </article>
+    </section>
+    
+    <!--  Clone the Repo -->
+    <a id="step3"></a>
+    <section class="box rounded">
+      <div class="round"><p class="step">3</p></div>
+      <div class="section-title"><h2>Clone the New Repo</h2></div>  				 		
+      <article>  
+        <p>Back in Eclipse, switch to the <span class="italics">Git Repository Exploring</span> (Window &gt; Open Perspective &gt; Other). Near the top of the window select Clone Repo.</p>
+        <div class="imgborder"><a href="img/03_clonebtn.jpg" target="_new"><img src="img/03_clonebtn.jpg" /></a></div>
+        <p>Enter the URL captured from the previous step (Github Repo HTTPS URL) and your credentials. Hit next.</p>
+        <div class="imgborder"><a href="img/3_clonedia.jpg" target="_new"><img src="img/3_clonedia.jpg" /></a></div>
+        <p>Verify the master branch is selected and hit next.</p>
+        <div class="imgborder"><a href="img/3_clonebranch.jpg" target="_new"><img src="img/3_clonebranch.jpg" /></a></div>
+        <p>Select the local location where the Git repo will be stored. This is your working directory for local/offline commits. Click Finish.
+        <div class="imgborder"><a href="img/3_localdest.jpg" target="_new"><img src="img/3_localdest.jpg" /></a></div>
+    	<p>You should now see the new repo listed under Git Repositories. Proceed to the next step.</p>
+      </article>			
+    </section>
+   
+    <!--  Adding Projects to a Git Repo -->
+    <a id="step4"></a>
+    <section class="box rounded">
+      <div class="round"><p class="step">4</p></div>
+      <div class="section-title"><h2>Adding Projects to a Git Repo</h2></div>  				 		
+      <article>  
+        <p>Create an Eclipse project as you normally would (File &gt; New &gt; Static Web Project for example). You should now see the project listed in Project Explorer. Add some content to the project under the appropriate folder (WebContent in the case of a Static Web Project). Right click on the project and navigate to Team &gt; Share Project as seen below.</p>
+        <div class="imgborder"><a href="img/04_shareproject.png" target="_new"><img src="img/04_shareproject.png" /></a></div>
+        <p>On the dialogue that follows select Git.</p>
+        <div class="imgborder"><a href="img/4_sharegit.jpg" target="_new"><img src="img/4_sharegit.jpg" /></a></div>
+        <p>On the next dialogue select the local repo you created in Step 3. Your selection should look similar to below. Click Finish.</p>
+        <div class="imgborder"><a href="img/04_configgit.jpg" target="_new"><img src="img/04_configgit.jpg" /></a></div>
+        <p>In Project Explorer, your project should now have a tag following indicating it is under Git control, you should also notice quite a few new options under the Team menu.</p>
+        <div class="imgborder"><a href="img/04_final.jpg" target="_new"><img src="img/04_final.jpg" /></a></div>
+        <p>You are now setup to use Git with Eclipse! The next step will take you through your first commit and push to upstream.</p>		
+      </article>
+    </section>
+    
+    <!--  Committing Changes -->
+    <a id="step5"></a>
+    <section class="box rounded">
+      <div class="round"><p class="step">5</p></div>
+      <div class="section-title"><h2>Committing Changes</h2></div>  				 		
+      <article>
+        <p>You are now ready to make updates and commit those changes to Github. You will make code changes, add files, etc. as you normally would. Once code is tested and is ready to be checked in, right click on the project and navigate to Team &gt; </p>
+        <div class="imgborder"><a href="img/05_commitmenu.jpg" target="_new"><img src="img/05_commitmenu.jpg" /></a></div>
+        <p>Enter a commit comment in the large box at the top. Use the highlighted select all (or select the files you want to commit) and click on commit.</p>
+        <div class="imgborder"><a href="img/05_commitdia.jpg" target="_new"><img src="img/05_commitdia.jpg" /></a></div>
+        <p>The new code has now been committed to your local git repo. When ready to push changes to Github, right click on the project and navigate to Team &gt; Push to Upstream.</p>
+        <div class="imgborder"><a href="img/05_pushmenu.jpg" target="_new"><img src="img/05_pushmenu.jpg" /></a></div>
+    	<p>You have successfully committed code changes to Github!</p>
+      </article>
+    </section>
+    
+    <!--  Contact Form -->
+    <a id="contact"></a>
+    <section class="box rounded">
+      <div class="round"><p class="step">&#10035;</p></div>
+      <div class="section-title"><h2>Feedback Welcome</h2></div>
+      <p>Was this helpful? Know of a better way? Let us know!</p>
+      <form name="comment_form">
+        <fieldset>
+          <legend>How'd we do?</legend>
+            <div id="error" class="alert alert-error"></div>
+            <div class="row-fluid pad20" id="formwrap">
+            <div class="span2"></div>
+            <div class="span3 center">
+              <div>Name*: </div>
+              <div><input type="text" size="25" name="name"/></div>
+              <div>Email: </div>
+              <div><input type="text" size="25" name="email"/></div>
+            </div>
+            <div class="span2"></div>
+            <div class="span3 center">
+              <div class="">Comments*:</div>
+              <textarea name="comments" cols="25" rows="4"></textarea>
+            </div>
+            <div class="span2"></div>
+          </div>
+          <div id="submit" onclick="submitForm()">SUBMIT</div>
+        </fieldset>
+      </form>
+    </section>		
+      
+    <!--  Footer -->
+    <footer><p>Shane Kumpf - Assignment 2</p></footer>
+    
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/form.js"></script>
+    
+  </body>
+</html>
