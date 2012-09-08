@@ -167,3 +167,11 @@ input, textarea {
 	margin: 0 auto;
 	text-align: center;
 }
+
+.hide {
+	display: none;
+}
+
+.bold {
+	font-weight: bold;
+}

@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Assignment 02 - Shane Kumpf - CSCI 223</title>
+    <title>Assignment 03 - Shane Kumpf - CSCI 223</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -127,7 +127,7 @@
       <div class="round"><p class="step">&#10035;</p></div>
       <div class="section-title"><h2>Feedback Welcome</h2></div>
       <p>Was this helpful? Know of a better way? Let us know!</p>
-      <form name="comment_form">
+      <form name="comment_form" action="/" method="get">
         <fieldset>
           <legend>How'd we do?</legend>
             <div id="error" class="alert alert-error"></div>
@@ -141,10 +141,21 @@
             </div>
             <div class="span2"></div>
             <div class="span3 center">
-              <div class="">Comments*:</div>
+              <div>Comments*:</div>
               <textarea name="comments" cols="25" rows="4"></textarea>
             </div>
             <div class="span2"></div>
+          </div>
+          <div class="row-fluid pad20" id="formwrap">
+          	<div class="span12 center">
+          	  Under 21? 
+          	  Yes: <input type="radio" name="group1" id="age_yes" />
+          	  No: <input type="radio" name="group1" id="age_no" onclick="showAgeField();"/></div>
+          </div>
+          <div class="row-fluid pad20" id="formwrap">
+            <div class="span12 center hide" id="age">
+              Enter age: <input type="text" size="25" name="age"/>
+            </div>
           </div>
           <div id="submit" onclick="submitForm()">SUBMIT</div>
         </fieldset>
@@ -152,7 +163,7 @@
     </section>		
       
     <!--  Footer -->
-    <footer><p>Shane Kumpf - Assignment 2</p></footer>
+    <footer><p>Shane Kumpf - Assignment 3</p></footer>
     
     <script src="js/jquery-1.8.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
