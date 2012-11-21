@@ -8,7 +8,7 @@ import edu.csci233.mastermind.Row.RowType;
 
 public class Game {
 	
-	public final int BOARD_HEIGHT = 10;
+	public final static int BOARD_HEIGHT = 10;
 	private int codeSize;
 	private boolean allowDuplicates;
 	private Row userRow;
