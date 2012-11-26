@@ -1,7 +1,10 @@
 package edu.csci233.mastermind;
 
-public class Row {
+import java.io.Serializable;
+
+public class Row implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private RowType rowType;
 	private int width = 4;
 	private Peg[] pegs;

@@ -1,12 +1,15 @@
 package edu.csci233.mastermind;
 
-public class Peg {
+import java.io.Serializable;
 
+public class Peg implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Color color;
 	private PegType pegType;
 	
 	public enum Color {
-		RED, GREEN, ORANGE, BLUE, YELLOW, BROWN, BLACK, WHITE;
+		RED, GREEN, ORANGE, BLUE, YELLOW, PURPLE, GRAY, WHITE, NONE;
 	}
 	
 	public enum PegType {
