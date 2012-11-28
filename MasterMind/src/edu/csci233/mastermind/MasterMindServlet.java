@@ -73,7 +73,9 @@ public class MasterMindServlet extends HttpServlet {
 			if(!game.checkGuess(currentRow)) {
 				setCodeRowHiddenDisplay(request, response);
 			} else {
-				System.out.println("YOU WON!");
+				game.setCodeRow(currentRow);
+				setCodeRowDisplay(request, response);
+				setGameOverModal(request, response);
 			}
 			game.setActiveRowId(game.getActiveRowId() + 1);
 		}
@@ -121,6 +123,7 @@ public class MasterMindServlet extends HttpServlet {
 	private String getRowDisplay(HttpServletRequest request, HttpServletResponse response, Row userRow, Row responseRow, boolean currentRow) {
 		StringBuffer sb = new StringBuffer();
 		
+		// Start the current row
 		if(currentRow) {
 			sb.append("<div class='rowcontent currentRow'>");
 		} else {
@@ -165,6 +168,17 @@ public class MasterMindServlet extends HttpServlet {
 		
 		for(int i = 0; i < game.getCodeSize(); i++) {
 			sb.append("<div class='questionpeg shadow'><p>?</p></div>");
+		}
+		session.setAttribute("codeRowDisplay", sb.toString());
+	}
+	
+	private void setCodeRowDisplay(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		StringBuffer sb = new StringBuffer();
+		
+		for(Peg peg : game.getCodeRow().getPegs()) {
+			sb.append("<div class='largepeg shadow " + getPegCssClass(peg.getColor()) + "'></div>");
 		}
 		session.setAttribute("codeRowDisplay", sb.toString());
 	}

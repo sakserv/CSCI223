@@ -45,6 +45,10 @@ public class Game implements Serializable {
 		return codeRow;
 	}
 	
+	public void setCodeRow(Row codeRow) {
+		this.codeRow = codeRow;
+	}
+	
 	public void generateCodeRow() {
 		codeRow = new Row();
 		codeRow.setRowType(RowType.CODE);
@@ -123,9 +127,6 @@ public class Game implements Serializable {
 					colorsUsed[redCount] = userPegs[i].getColor();
 					redCount++;
 				} else {
-					
-					// i = green
-					// j = green
 					for(int j = 0; j < userPegs.length; j++) {
 						
 						if(userPegs[i].equals(codePegs[j])) {
