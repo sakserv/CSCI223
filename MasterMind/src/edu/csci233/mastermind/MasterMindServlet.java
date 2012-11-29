@@ -44,6 +44,7 @@ public class MasterMindServlet extends HttpServlet {
 			setGameSettings(request, response);
 			
 			// Create a new empty board state.
+			session.removeAttribute("gameOverDisplay");
 			game.initGameState();
 			game.initReponseState();
 			game.generateCodeRow();
@@ -87,6 +88,20 @@ public class MasterMindServlet extends HttpServlet {
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 	
+	private void setGameOverModal(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		StringBuffer sb = new StringBuffer();
+		session.removeAttribute("gameOverDisplay");
+		
+		sb.append("<script type='text/javascript'>");
+		sb.append("$(function() {");
+		sb.append("$('#gameover-dialog-modal').dialog({");
+		sb.append("height: 220,");
+		sb.append("width: 440,");
+		sb.append("modal: true })});");
+		sb.append("</script>");
+		session.setAttribute("gameOverDisplay", sb.toString());
+	}
 
 	private void generateGameRowsDisplay(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();

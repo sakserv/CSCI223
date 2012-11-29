@@ -226,6 +226,15 @@ body {
  	width: auto; 
  	min-height: 0px; 
  	height: 97px;
+ 	text-align: center;
+ }
+ 
+  #gameover-dialog-modal {
+ 	display:none;
+ 	width: auto; 
+ 	min-height: 0px; 
+ 	height: 97px;
+ 	text-align: center;
  }
  
 .fancybutton {
@@ -260,6 +269,11 @@ body {
 	position:relative;
 	top:1px;
 }
+
+ #gameover-dialog-modal .fancybutton {
+ 	width: 120px;
+ 	font-size: 12px;
+ }
 	
 label {
 	font-size: 10px;

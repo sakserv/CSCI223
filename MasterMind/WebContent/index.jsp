@@ -61,6 +61,8 @@
 </div>
 
 <div id="pegmissing-dialog-modal" title="Missing Peg">A peg is missing from the response row, please try again.</div>
+<div id="gameover-dialog-modal" title="You Won!">Game Over<br /><input type="button" id="restartGame" name="restartGame" value="New Game" class="fancybutton"></div>
+${sessionScope.gameOverDisplay}
 
 <script type="text/javascript">
 $(function() {
@@ -109,7 +111,7 @@ $("#checkResult").click(function() {
 $("#newGame").click(function() {
 	$('[name=buttonPushed]').val("newGame");
 	$("#currentRowForm").submit();
-})
+});
 
 // When the document loads the first time, display the default board.
 $(document).ready(function() {
@@ -119,6 +121,13 @@ $(document).ready(function() {
 		$('[name=codeSize]').val("4");
 		$("#newGame").click();
 	}
+});
+
+$("#restartGame").click(function() {
+	$("<option value='4'>4</option>").appendTo("#codeSize");
+	$('[name=allowDuplicates]').val("true");
+	$('[name=codeSize]').val("4");
+	$("#newGame").click();
 });
 
 </script>
