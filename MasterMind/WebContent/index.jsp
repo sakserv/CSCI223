@@ -61,7 +61,7 @@
 </div>
 
 <div id="pegmissing-dialog-modal" title="Missing Peg">A peg is missing from the response row, please try again.</div>
-<div id="gameover-dialog-modal" title="You Won!">Game Over<br /><input type="button" id="restartGame" name="restartGame" value="New Game" class="fancybutton"></div>
+<div id="gameover-dialog-modal" title="Game Over">${sessionScope.gameOverTextDisplay}<br /><input type="button" id="restartGame" name="restartGame" value="New Game" class="fancybutton"></div>
 ${sessionScope.gameOverDisplay}
 
 <script type="text/javascript">

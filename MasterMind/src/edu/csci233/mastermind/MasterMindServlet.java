@@ -76,9 +76,15 @@ public class MasterMindServlet extends HttpServlet {
 			} else {
 				game.setCodeRow(currentRow);
 				setCodeRowDisplay(request, response);
+				session.setAttribute("gameOverTextDisplay", "You Won!");
 				setGameOverModal(request, response);
 			}
 			game.setActiveRowId(game.getActiveRowId() + 1);
+			if(game.getActiveRowId() == Game.BOARD_HEIGHT) {
+				setCodeRowDisplay(request, response);
+				session.setAttribute("gameOverTextDisplay", "Better luck next time!");
+				setGameOverModal(request,response);
+			}
 		}
 		
 		generateGameRowsDisplay(request, response);
@@ -98,6 +104,8 @@ public class MasterMindServlet extends HttpServlet {
 		sb.append("$('#gameover-dialog-modal').dialog({");
 		sb.append("height: 220,");
 		sb.append("width: 440,");
+		sb.append("closeOnEscape: false,");
+		sb.append("dialogClass: 'no-close',");
 		sb.append("modal: true })});");
 		sb.append("</script>");
 		session.setAttribute("gameOverDisplay", sb.toString());
