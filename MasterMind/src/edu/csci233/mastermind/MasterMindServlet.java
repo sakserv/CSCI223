@@ -31,31 +31,13 @@ public class MasterMindServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Validate params
+		// Get session
 		HttpSession session = request.getSession();
-		if(!validateSessionParamTypes(request, response)) {
-			response.sendError(500, "Session is corrupt, restart your browser.");
-		}
 		
 		// Setup a new game
 		String buttonPushed = request.getParameter("buttonPushed");
 		if(session.getAttribute("game") == null || buttonPushed.equals("newGame")) {
-			game = Game.setupGame();
-			setGameSettings(request, response);
-			
-			// Create a new empty board state.
-			session.removeAttribute("gameOverDisplay");
-			game.initGameState();
-			game.initReponseState();
-			game.generateCodeRow();
-			game.setCodeRowHidden(true);
-			game.setActiveRowId(0);
-			setBoardWidthCss(request, response);
-			createHiddenPegFields(request, response);
-			setCodeRowHiddenDisplay(request, response);
-			
-			// Store the game object in session.
-			session.setAttribute("game", game);
+			setupNewGame(request, response);
 		} else {
 			// Not a new game, get the game object from session
 			game = (Game)session.getAttribute("game");
@@ -71,6 +53,7 @@ public class MasterMindServlet extends HttpServlet {
 			Row currentRow = game.getGameState()[game.getActiveRowId()];
 			game.setResponseRow(currentRow);
 			
+			// Check the users code against the code row and display if correct
 			if(!game.checkGuess(currentRow)) {
 				setCodeRowHiddenDisplay(request, response);
 			} else {
@@ -79,6 +62,8 @@ public class MasterMindServlet extends HttpServlet {
 				session.setAttribute("gameOverTextDisplay", "You Won!");
 				setGameOverModal(request, response);
 			}
+			
+			// Handle the user reaching the end of the board without a correct repsonse.
 			game.setActiveRowId(game.getActiveRowId() + 1);
 			if(game.getActiveRowId() == Game.BOARD_HEIGHT) {
 				setCodeRowDisplay(request, response);
@@ -87,6 +72,7 @@ public class MasterMindServlet extends HttpServlet {
 			}
 		}
 		
+		// Display the board
 		generateGameRowsDisplay(request, response);
 		codeSizeSelectedDisplay(request, response);
 		
@@ -94,6 +80,36 @@ public class MasterMindServlet extends HttpServlet {
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 	
+	/**
+	 * Creates a new game and sets the defaults.
+	 * @param request
+	 * @param response
+	 */
+	private void setupNewGame(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		game = Game.setupGame();
+		setGameSettings(request, response);
+		
+		// Create a new empty board state.
+		session.removeAttribute("gameOverDisplay");
+		game.initGameState();
+		game.initReponseState();
+		game.generateCodeRow();
+		game.setCodeRowHidden(true);
+		game.setActiveRowId(0);
+		setBoardWidthCss(request, response);
+		createHiddenPegFields(request, response);
+		setCodeRowHiddenDisplay(request, response);
+		
+		// Store the game object in session.
+		session.setAttribute("game", game);
+	}
+	
+	/**
+	 * Displays the game over modal.
+	 * @param request
+	 * @param response
+	 */
 	private void setGameOverModal(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		StringBuffer sb = new StringBuffer();
@@ -111,6 +127,11 @@ public class MasterMindServlet extends HttpServlet {
 		session.setAttribute("gameOverDisplay", sb.toString());
 	}
 
+	/**
+	 * Generates all rows on the game board.
+	 * @param request
+	 * @param response
+	 */
 	private void generateGameRowsDisplay(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		StringBuffer sb = new StringBuffer();
@@ -127,6 +148,11 @@ public class MasterMindServlet extends HttpServlet {
 		session.setAttribute("gameRowsDisplay", sb.toString());
 	}
 	
+	/**
+	 * Sets the current row using the users response.
+	 * @param request
+	 * @param response
+	 */
 	private void populateActiveRow(HttpServletRequest request, HttpServletResponse response) {
 		Row[] gameState = game.getGameState();
 		Row activeRow = gameState[game.getActiveRowId()];
@@ -143,6 +169,15 @@ public class MasterMindServlet extends HttpServlet {
 	
 	}
 	
+	/**
+	 * Generates the HTML for a single row including the response pegs.
+	 * @param request
+	 * @param response
+	 * @param userRow	row to be processed
+	 * @param responseRow	reponse pegs
+	 * @param currentRow	true if the row being processed is the current row.
+	 * @return
+	 */
 	private String getRowDisplay(HttpServletRequest request, HttpServletResponse response, Row userRow, Row responseRow, boolean currentRow) {
 		StringBuffer sb = new StringBuffer();
 		
@@ -184,6 +219,11 @@ public class MasterMindServlet extends HttpServlet {
 		return sb.toString();
 	}
 	
+	/**
+	 * Sets the code row display when pegs are hidden
+	 * @param request
+	 * @param response
+	 */
 	private void setCodeRowHiddenDisplay(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
@@ -195,6 +235,11 @@ public class MasterMindServlet extends HttpServlet {
 		session.setAttribute("codeRowDisplay", sb.toString());
 	}
 	
+	/**
+	 * Sets the codeRow display for reveal.
+	 * @param request
+	 * @param response
+	 */
 	private void setCodeRowDisplay(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
@@ -206,14 +251,30 @@ public class MasterMindServlet extends HttpServlet {
 		session.setAttribute("codeRowDisplay", sb.toString());
 	}
 	
+	/**
+	 * Gets the css class based on peg color
+	 * @param color	Peg color
+	 * @return	css class
+	 */
 	private String getPegCssClass(Color color) {
 		return color.toString().toLowerCase() + "peg";
 	}
 	
+	/**
+	 * Get the peg color enum from the color string
+	 * 
+	 * @param color	The peg color as a string
+	 * @return	enum color of the peg
+	 */
 	private Color getPegColor(String color) {
 		return Color.valueOf(color.toUpperCase().trim());
 	}
 	
+	/**
+	 * Set code row display when the pegs are hidden.
+	 * @param request	Http request
+	 * @param response	Http response
+	 */
 	private void createHiddenPegFields(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		StringBuffer sb = new StringBuffer();
@@ -225,7 +286,13 @@ public class MasterMindServlet extends HttpServlet {
 		session.removeAttribute("hiddenPegFields");
 		session.setAttribute("hiddenPegFields", sb.toString());
 	}
-		private void codeSizeSelectedDisplay(HttpServletRequest request, HttpServletResponse response) {
+	
+	/**
+	 * Set the codeSizeDisplay session attribute which is used to populate the field in the form to the current value
+	 * @param request	Http request
+	 * @param response	Http response
+	 */
+	private void codeSizeSelectedDisplay(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		StringBuffer sb = new StringBuffer();
 		
@@ -241,37 +308,22 @@ public class MasterMindServlet extends HttpServlet {
 		session.setAttribute("codeSizeDisplay", sb.toString());
 	}
 	
+	/**
+	 * Dynamically adjust the board width
+	 * @param request	Http request
+	 * @param response	Http response
+	 */
 	private void setBoardWidthCss(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("boardWidthClass");
 		session.setAttribute("boardWidthClass", "board" + game.getCodeSize());
 	}
 	
-	private boolean validateSessionParamTypes(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		Enumeration<String> requestParams = request.getAttributeNames();
-		while(requestParams.hasMoreElements()) {
-			String key = requestParams.nextElement();
-			
-			if(key.equals("game") && !(session.getAttribute(key) instanceof Game)) {
-				return false;
-			}
-			
-			if(key.equals("codeRow") && !(session.getAttribute(key) instanceof Row[])) {
-				return false;
-			}
-			
-			if(key.equals("codeRowHidden") && !(session.getAttribute(key) instanceof Boolean)) {
-				return false;
-			}
-			
-			if(key.equals("currentRow") && !(session.getAttribute(key) instanceof Integer)) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
+	/**
+	 * Set the game settings.
+	 * @param request	Http request
+	 * @param response	Http response
+	 */
 	private void setGameSettings(HttpServletRequest request, HttpServletResponse response) {
 		game.setCodeSize(Integer.parseInt(String.valueOf(request.getParameter("codeSize"))));
 	}

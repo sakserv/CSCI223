@@ -259,13 +259,17 @@ body {
 	text-decoration:none;
 	text-shadow:1px 1px 0px #ffffff;
 	width: 74px;
-	word-wrap: normal;
-}.fancybutton:hover {
+	word-wrap: normal;	
+}
+
+.fancybutton:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9) );
 	background:-moz-linear-gradient( center top, #e9e9e9 5%, #f9f9f9 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9');
-	background-color:#e9e9e9;
-}.fancybutton:active {
+	background-color:#e9e9e9;	
+}
+
+.fancybutton:active {
 	position:relative;
 	top:1px;
 }

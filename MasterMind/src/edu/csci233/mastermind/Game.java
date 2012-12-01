@@ -20,7 +20,6 @@ public class Game implements Serializable {
 	private Row[] responseState;
 	private int activeRowId;
 	private boolean codeRowHidden;
-	private boolean gameOver = false;
 	
 	private Game() {
 		super();
@@ -87,76 +86,57 @@ public class Game implements Serializable {
 		Peg[] userPegs = userRow.getPegs();
 		Peg[] codePegs = new Peg[getCodeSize()];
 		System.arraycopy(codeRow.getPegs(), 0, codePegs, 0, codeRow.getPegs().length);
+
+		System.out.print("CORRECT: ");
+		for(Peg peg : codePegs) {
+			System.out.print(peg.getColor().toString() + " ");
+		}
+		System.out.println();
+			
 		
-		// Correct answer, all response pegs red
-	//	if(checkGuess(userRow)) {
-	//		for(int i = 0; i < getCodeSize(); i++) {
-	//			responsePegs[i] = new Peg();
-	//			responsePegs[i].setColor(Color.RED);
-	//			responsePegs[i].setPegType(PegType.SMALL);
-	//		}
-	//		responseRow.populate(responsePegs);
-	//	} else {
+		Color[] colorsUsed = new Color[getCodeSize()];
+		// Setup correct color/pos first
+		int redCount = 0;
 			
-			
-			
-			System.out.println("INCORRECT ANSWER");
-			System.out.print("YOUR ANSWER: ");
-			for(Peg peg : userPegs) {
-				System.out.print(peg.getColor().toString() + " ");
-			}
-			System.out.println();
-			
-			System.out.print("CORRECT: ");
-			for(Peg peg : codePegs) {
-				System.out.print(peg.getColor().toString() + " ");
-			}
-			System.out.println();
-			
-			
-			Color[] colorsUsed = new Color[getCodeSize()];
-			// Setup correct color/pos first
-			int redCount = 0;
-			
-			outer:
-			for(int i = 0; i < userPegs.length; i++) {
-				if(userPegs[i].equals(codePegs[i])) {
-					responsePegs[redCount] = new Peg();
-					responsePegs[redCount].setColor(Color.RED);
-					responsePegs[redCount].setPegType(PegType.SMALL);
-					colorsUsed[redCount] = userPegs[i].getColor();
-					redCount++;
-				} else {
-					for(int j = 0; j < userPegs.length; j++) {
-						
-						if(userPegs[i].equals(codePegs[j])) {
-						
-							for(int k = 0; k < colorsUsed.length; k++) {
-								if(userPegs[i].getColor().equals(colorsUsed[k])) {
-									continue outer;
-								}
+		outer:
+		for(int i = 0; i < userPegs.length; i++) {
+			if(userPegs[i].equals(codePegs[i])) {
+				responsePegs[redCount] = new Peg();
+				responsePegs[redCount].setColor(Color.RED);
+				responsePegs[redCount].setPegType(PegType.SMALL);
+				colorsUsed[redCount] = userPegs[i].getColor();
+				redCount++;
+			} else {
+				for(int j = 0; j < userPegs.length; j++) {
+					
+					if(userPegs[i].equals(codePegs[j])) {
+					
+						for(int k = 0; k < colorsUsed.length; k++) {
+							if(userPegs[i].getColor().equals(colorsUsed[k])) {
+								continue outer;
 							}
-							responsePegs[redCount] = new Peg();
-							responsePegs[redCount].setColor(Color.WHITE);
-							responsePegs[redCount].setPegType(PegType.SMALL);
-							colorsUsed[redCount] = userPegs[i].getColor();
-							redCount++;
 						}
+						responsePegs[redCount] = new Peg();
+						responsePegs[redCount].setColor(Color.WHITE);
+						responsePegs[redCount].setPegType(PegType.SMALL);
+						colorsUsed[redCount] = userPegs[i].getColor();
+						redCount++;
 					}
 				}
 			}
+		}
 			
 			
-			for(int i = 0; i < userPegs.length; i++) {
-				if(responsePegs[i] == null) {
-					responsePegs[i] = new Peg();
-					responsePegs[i].setColor(Color.NONE);
-					responsePegs[i].setPegType(PegType.SMALL);
-				}
+		for(int i = 0; i < userPegs.length; i++) {
+			if(responsePegs[i] == null) {
+				responsePegs[i] = new Peg();
+				responsePegs[i].setColor(Color.NONE);
+				responsePegs[i].setPegType(PegType.SMALL);
 			}
-			responseRow.populate(responsePegs);
+		}
+		responseRow.populate(responsePegs);
 			
-		responseState[activeRowId] = responseRow;
+	responseState[activeRowId] = responseRow;
 	}
 	
 	public Row getReponseRow() {
@@ -172,7 +152,6 @@ public class Game implements Serializable {
 				return false;
 			}
 		}
-		gameOver = true;
 		return true;
 	}
 	
